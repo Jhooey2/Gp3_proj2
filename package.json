@@ -2,11 +2,11 @@
   "name": "devnondev",
   "version": "1.0.0",
   "description": "non developers connect with bidding developers for gig work and rate projects",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "watch": "nodemon server.js",
+    "start": "node app.js",
+    "watch": "nodemon app.js",
     "seed": "node seeds/index.js"
   },
   "repository": {
