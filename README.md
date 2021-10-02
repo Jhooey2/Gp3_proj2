@@ -7,7 +7,7 @@ Our site will provide a niche in the gig worker market that is specifically gear
 initial task list;
 
 
-Views/ Front end, API, Project notes, presentation- Jay
+Views/ Front end, API, Project notes, presentation- JayH2
 
 Back end, Brad
 
