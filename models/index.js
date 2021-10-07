@@ -17,6 +17,8 @@ NonDev.hasMany(Rating, {
 
 Dev.hasMany(Job, {
   foreignKey: "dev_id",
+  onDelete: "CASCADE",
+  constraints: false,
 });
 
 Dev.hasMany(Rating, {
@@ -25,17 +27,18 @@ Dev.hasMany(Rating, {
 });
 
 Dev.hasMany(Bid, {
-    foreignKey: "bid_id",
-})
+  foreignKey: "bid_id",
+});
 
 Job.belongsTo(NonDev, {
   foreignKey: "nondev_id",
   onDelete: "CASCADE",
 });
 
-Job.hasMany(Dev, {
-    foreignKey: "dev_id",
-  });
+Job.belongsTo(Dev, {
+  foreignKey: "dev_id",
+  constraints: false,
+});
 
 Job.hasMany(Bid, {
   foreignKey: "job_id",
@@ -49,6 +52,10 @@ Rating.belongsTo(Dev, {
 Rating.belongsTo(Job, {
   foreignKey: "job_id",
   onDelete: "CASCADE",
+});
+
+Bid.belongsTo(Dev, {
+  foreignKey: "dev_id",
 });
 
 module.exports = { Bid, Dev, NonDev, Job, Rating };
