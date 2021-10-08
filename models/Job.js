@@ -20,19 +20,16 @@ Job.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    nondev_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "nondev",
+        model: "user",
         key: "id",
       },
     },
-    dev_id: {
+    rating: {
       type: DataTypes.INTEGER,
-      references: {
-        model: "dev",
-        key: "id",
-      },
+      allowNull: true,
     },
   },
   {

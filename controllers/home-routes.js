@@ -1,20 +1,21 @@
 const sequelize = require("../config/connection");
-const { Job, Dev, NonDev, Rating, Bid } = require("../models");
+const { Job, User, Rating, Bid } = require("../models");
 const router = require("express").Router();
+
 router.get("/", (req, res) => {
   Job.findAll({
     attributes: ["id", "title", "description", "created_at"],
     include: [
       {
         model: Rating,
-        attributes: ["id", "rating_text", "nondev_id", "dev_id", "created_at"],
+        attributes: ["id", "rating_text", "created_at"],
         include: {
-          model: Dev,
+          model: User,
           attributes: ["username"],
         },
       },
       {
-        model: NonDev,
+        model: User,
         attributes: ["username"],
       },
     ],
@@ -54,17 +55,15 @@ router.get("/job/:id", (req, res) => {
           "id",
           "rating_text",
           "job_id",
-          "dev_id",
-          "nondev_id",
           "created_at",
         ],
         include: {
-          model: Dev,
+          model: User,
           attributes: ["username"],
         },
       },
       {
-        model: NonDev,
+        model: User,
         attributes: ["username"],
       },
     ],
@@ -83,6 +82,7 @@ router.get("/job/:id", (req, res) => {
       res.status(500).json(err);
     });
 });
+
 router.get("/jobs-ratings", (req, res) => {
   Job.findOne({
     where: {
@@ -92,14 +92,14 @@ router.get("/jobs-ratings", (req, res) => {
     include: [
       {
         model: Rating,
-        attributes: ["id", "rating_text", "job_id", "nondev_id", "created_at"],
+        attributes: ["id", "rating_text", "job_id", "created_at"],
         include: {
-          model: Dev,
+          model: User,
           attributes: ["username"],
         },
       },
       {
-        model: NonDev,
+        model: User,
         attributes: ["username"],
       },
     ],
@@ -128,14 +128,14 @@ router.get("/jobs-bids", (req, res) => {
     include: [
       {
         model: Bid,
-        attributes: ["id", "quote", "job_id", "dev_id", "created_at"],
+        attributes: ["id", "quote", "job_id", "user_id", "created_at"],
         include: {
-          model: NonDev,
+          model: User,
           attributes: ["username"],
         },
       },
       {
-        model: Dev,
+        model: User,
         attributes: ["username"],
       },
     ],

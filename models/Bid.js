@@ -23,10 +23,10 @@ Bid.init(
         key: "id",
       },
     },
-    dev_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "dev",
+        model: "user",
         key: "id",
       },
     },

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Job, Dev, NonDev, Rating } = require("../../models");
+const { Job, User, Rating, Bid } = require("../../models");
 const sequelize = require("../../config/connection");
 const withAuth = require("../../utils/auth");
 
@@ -10,14 +10,22 @@ router.get("/", (req, res) => {
     order: [["created_at", "DESC"]],
     include: [
       {
-        model: NonDev,
+        model: User,
         attributes: ["username"],
       },
       {
         model: Rating,
-        attributes: ["id", "rating_text", "job_id", "nondev_id", "created_at"],
+        attributes: ["id", "rating_text", "job_id", "created_at"],
         include: {
-          model: Dev,
+          model: User,
+          attributes: ["username"],
+        },
+      },
+      {
+        model: Bid,
+        attributes: ["id", "quote", "user_id"],
+        include: {
+          model: User,
           attributes: ["username"],
         },
       },
@@ -37,14 +45,22 @@ router.get("/:id", (req, res) => {
     attributes: ["id", "description", "title", "created_at"],
     include: [
       {
-        model: NonDev,
+        model: User,
         attributes: ["username"],
       },
       {
         model: Rating,
-        attributes: ["id", "rating_text", "job_id", "user_id", "created_at"],
+        attributes: ["id", "rating_text", "job_id", "created_at"],
         include: {
-          model: NonDev,
+          model: User,
+          attributes: ["username"],
+        },
+      },
+      {
+        model: Bid,
+        attributes: ["id", "quote", "user_id"],
+        include: {
+          model: User,
           attributes: ["username"],
         },
       },
@@ -67,7 +83,7 @@ router.post("/", withAuth, (req, res) => {
   Job.create({
     title: req.body.title,
     content: req.body.content,
-    nondev_id: req.session.nondev_id,
+    user_id: req.session.user_id,
   })
     .then((dbJobData) => res.json(dbJobData))
     .catch((err) => {
