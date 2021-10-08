@@ -22,26 +22,10 @@ Rating.init(
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-            model: "dev",
+            model: "job",
             key: "rating",
         },
     },
-    nondev_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "nondev",
-        key: "id",
-      },
-    },
-    dev_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: "dev",
-          key: "id",
-        },
-      },
     job_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
