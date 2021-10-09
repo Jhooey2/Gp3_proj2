@@ -38,10 +38,10 @@ User.init(
         isEmail: true,
       },
     },
-    company: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+    developer: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
