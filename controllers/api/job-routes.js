@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Job, User, Rating, Bid } = require("../../models");
+const { Job, User, Bid } = require("../../models");
 const sequelize = require("../../config/connection");
 const withAuth = require("../../utils/auth");
 
@@ -13,14 +13,14 @@ router.get("/", (req, res) => {
         model: User,
         attributes: ["username"],
       },
-      {
-        model: Rating,
-        attributes: ["id", "rating_text", "job_id", "created_at"],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
-      },
+      // {
+      //   model: Rating,
+      //   attributes: ["id", "rating_text", "job_id", "created_at"],
+      //   include: {
+      //     model: User,
+      //     attributes: ["username"],
+      //   },
+      // },
       {
         model: Bid,
         attributes: ["id", "quote", "user_id"],
