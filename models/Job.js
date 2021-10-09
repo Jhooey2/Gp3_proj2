@@ -27,10 +27,10 @@ Job.init(
         key: "id",
       },
     },
-    rating: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
+    // rating: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: true,
+    // },
   },
   {
     sequelize,

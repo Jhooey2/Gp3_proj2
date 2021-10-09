@@ -1,0 +1,13 @@
+{{#if jobs.length}}
+<section>
+  <h2>Your Jobs</h2>
+    {{#each jobs as |job|}}
+      {{> dashboard-jobinfo job}}
+    {{/each}}
+
+</section>
+{{/if}}
+
+<button type="submit" class="btn" id="new-job-button" ><a class="link" href="/dashboard/new">+ New Job</a></button>
+
+<script src="/js/add-job.js"></script>

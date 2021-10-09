@@ -16,6 +16,11 @@ User.hasMany(Bid, {
   onDelete: "CASCADE",
 });
 
+User.hasMany(Rating, {
+  foreignKey: "user_id",
+  onDelete: "CASCADE",
+})
+
 Job.belongsTo(User, {
   foreignKey: "user_id",
   onDelete: "CASCADE",
@@ -38,6 +43,14 @@ Bid.belongsTo(Job, {
 
 Rating.belongsTo(Job, {
   foreignKey: "rating",
+});
+
+// Rating.belongsTo(User, {
+//   foreignKey: "user_id",
+// });
+
+Job.hasOne(Rating, {
+  foreignKey: "job_id",
 });
 
 // NonDev.hasMany(Job, {

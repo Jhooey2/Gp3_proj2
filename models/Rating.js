@@ -18,12 +18,12 @@ Rating.init(
         len: [1],
       },
     },
-    rating: {
+    rating_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-            model: "job",
-            key: "rating",
+            model: "bid",
+            key: "id",
         },
     },
     job_id: {
@@ -31,6 +31,14 @@ Rating.init(
       allowNull: false,
       references: {
         model: "job",
+        key: "id",
+      },
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "user",
         key: "id",
       },
     },

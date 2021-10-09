@@ -1,0 +1,23 @@
+
+{{> job-info job}}
+
+{{#if loggedIn}}
+<div class="card">
+    <h3 class="card-header"></h3>
+    <form class="card-body comment-form" id="comment-form">
+
+        <label class="form-label">Bid</label>
+        <input id="bid" name="bid-body" class="form-input" />
+
+        <button type="submit" class="btn">Submit</button>
+    </form>
+</div>
+{{/if}}
+
+{{> bids job.bids}}
+{{> ratings job.ratings}}
+
+{{#if loggedIn}}
+<script src="/js/bid.js"></script>
+<script src="/js/rating.js"></script>
+{{/if}}
