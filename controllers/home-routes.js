@@ -1,19 +1,19 @@
 const sequelize = require("../config/connection");
-const { Job, User, Rating, Bid } = require("../models");
+const { Job, User, Bid } = require("../models");
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
   Job.findAll({
     attributes: ["id", "title", "description", "created_at"],
     include: [
-      {
-        model: Rating,
-        attributes: ["id", "rating_text", "created_at"],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
-      },
+      // {
+      //   model: Rating,
+      //   attributes: ["id", "rating_text", "created_at"],
+      //   include: {
+      //     model: User,
+      //     attributes: ["username"],
+      //   },
+      // },
       {
         model: User,
         attributes: ["username"],
@@ -49,19 +49,14 @@ router.get("/job/:id", (req, res) => {
     },
     attributes: ["id", "description", "title", "created_at"],
     include: [
-      {
-        model: Rating,
-        attributes: [
-          "id",
-          "rating_text",
-          "job_id",
-          "created_at",
-        ],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
-      },
+      // {
+      //   model: Rating,
+      //   attributes: ["id", "rating_text", "job_id", "created_at"],
+      //   include: {
+      //     model: User,
+      //     attributes: ["username"],
+      //   },
+      // },
       {
         model: User,
         attributes: ["username"],
@@ -83,41 +78,41 @@ router.get("/job/:id", (req, res) => {
     });
 });
 
-router.get("/jobs-ratings", (req, res) => {
-  Job.findOne({
-    where: {
-      id: req.params.id,
-    },
-    attributes: ["id", "description", "title", "created_at"],
-    include: [
-      {
-        model: Rating,
-        attributes: ["id", "rating_text", "job_id", "created_at"],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
-      },
-      {
-        model: User,
-        attributes: ["username"],
-      },
-    ],
-  })
-    .then((dbJobData) => {
-      if (!dbJobData) {
-        res.status(404).json({ message: "No job with this ID" });
-        return;
-      }
-      const job = dbJobData.get({ plain: true });
+// router.get("/jobs-ratings", (req, res) => {
+//   Job.findOne({
+//     where: {
+//       id: req.params.id,
+//     },
+//     attributes: ["id", "description", "title", "created_at"],
+//     include: [
+//       {
+//         model: Rating,
+//         attributes: ["id", "rating_text", "job_id", "created_at"],
+//         include: {
+//           model: User,
+//           attributes: ["username"],
+//         },
+//       },
+//       {
+//         model: User,
+//         attributes: ["username"],
+//       },
+//     ],
+//   })
+//     .then((dbJobData) => {
+//       if (!dbJobData) {
+//         res.status(404).json({ message: "No job with this ID" });
+//         return;
+//       }
+//       const job = dbJobData.get({ plain: true });
 
-      res.render("jobs-ratings", { job, loggedIn: req.session.loggedIn });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+//       res.render("jobs-ratings", { job, loggedIn: req.session.loggedIn });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
 router.get("/jobs-bids", (req, res) => {
   Job.findOne({
