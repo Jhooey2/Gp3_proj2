@@ -2,7 +2,7 @@
 // const NonDev = require("./NonDev");
 const User = require("./User");
 const Job = require("./Job");
-const Rating = require("./Rating");
+// const Rating = require("./Rating");
 const Bid = require("./Bid");
 
 // Establishing model connections
@@ -15,11 +15,6 @@ User.hasMany(Bid, {
   foreignKey: "user_id",
   onDelete: "CASCADE",
 });
-
-User.hasMany(Rating, {
-  foreignKey: "user_id",
-  onDelete: "CASCADE",
-})
 
 Job.belongsTo(User, {
   foreignKey: "user_id",
@@ -41,17 +36,17 @@ Bid.belongsTo(Job, {
   onDelete: "CASCADE",
 });
 
-Rating.belongsTo(Job, {
-  foreignKey: "rating",
-});
+// Rating.belongsTo(Job, {
+//   foreignKey: "rating",
+// });
 
 // Rating.belongsTo(User, {
 //   foreignKey: "user_id",
 // });
 
-Job.hasOne(Rating, {
-  foreignKey: "job_id",
-});
+// Job.hasOne(Rating, {
+//   foreignKey: "job_id",
+// });
 
 // NonDev.hasMany(Job, {
 //   foreignKey: "nondev_id",
@@ -96,4 +91,4 @@ Job.hasOne(Rating, {
 //   foreignKey: "dev_id",
 // });
 
-module.exports = { Bid, User, Job, Rating };
+module.exports = { Bid, User, Job };

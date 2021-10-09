@@ -20,17 +20,28 @@ Job.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    user_id: {
+    poster_id: {
       type: DataTypes.INTEGER,
       references: {
         model: "user",
         key: "id",
       },
     },
-    // rating: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: true,
-    // },
+    bidder_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "user",
+        key: "id",
+      },
+    },
+    rating: {
+      type: DataTypes.INTEGER,
+      defaultValue: null,
+      validate: {
+        min: 1,
+        max: 5,
+      },
+    },
   },
   {
     sequelize,

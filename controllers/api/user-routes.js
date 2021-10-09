@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Job, Rating, Bid } = require("../../models");
+const { User, Job, Bid } = require("../../models");
 
 router.get("/", (req, res) => {
   User.findAll({
@@ -24,14 +24,14 @@ router.get("/:id", (req, res) => {
         attributes: ["id", "title", "description", "created_at"],
       },
 
-      {
-        model: Rating,
-        attributes: ["id", "rating_text", "created_at"],
-        include: {
-          model: Job,
-          attributes: ["title"],
-        },
-      },
+      // {
+      //   model: Rating,
+      //   attributes: ["id", "rating_text", "created_at"],
+      //   include: {
+      //     model: Job,
+      //     attributes: ["title"],
+      //   },
+      // },
       {
         model: Job,
         attributes: ["title"],
@@ -60,10 +60,14 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+  console.log("+++++++++User created++++", req.body);
   User.create({
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    developer: req.body.developer,
   })
 
     .then((dbUserData) => {
