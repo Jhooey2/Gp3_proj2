@@ -18,6 +18,8 @@ Our project is a gig work / gig worker connection site. Both Devs and non Devs w
 
 https://github.com/Jhooey2/Gp3_proj2
 
+https://dev-nondev.herokuapp.com/
+
 
 
 ## Screenshot
