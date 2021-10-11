@@ -21,7 +21,7 @@ router.get("/:id", (req, res) => {
     include: [
       {
         model: Job,
-        attributes: ["id", "title", "description", "created_at"],
+        attributes: ["id", "title", "description", "poster_id", "bidder_id", "created_at", "rating"],
       },
 
       // {
@@ -38,7 +38,7 @@ router.get("/:id", (req, res) => {
       },
       {
         model: Bid,
-        attributes: ["id", "quote", "user_id"],
+        attributes: ["id", "quote", "job_id", "user_id"],
         include: {
           model: User,
           attributes: ["username"],

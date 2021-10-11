@@ -4,20 +4,32 @@ const router = require("express").Router();
 
 router.get("/", (req, res) => {
   Job.findAll({
-    attributes: ["id", "title", "description", "created_at"],
+    attributes: [
+      "id",
+      "title",
+      "description",
+      "poster_id",
+      "bidder_id",
+      "created_at",
+      "rating",
+    ],
     include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
       // {
-      //   model: Rating,
-      //   attributes: ["id", "rating_text", "created_at"],
+      //   model: Bid,
+      //   attributes: ["id", "quote", "job_id", "user_id", "created_at"],
       //   include: {
       //     model: User,
       //     attributes: ["username"],
       //   },
       // },
-      {
-        model: User,
-        attributes: ["username"],
-      },
+      // {
+      //   model: User,
+      //   attributes: ["username"],
+      // },
     ],
   })
     .then((dbJobData) => {
@@ -47,7 +59,15 @@ router.get("/job/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "description", "title", "created_at"],
+    attributes: [
+      "id",
+      "title",
+      "description",
+      "poster_id",
+      "bidder_id",
+      "created_at",
+      "rating",
+    ],
     include: [
       // {
       //   model: Rating,
@@ -119,7 +139,15 @@ router.get("/jobs-bids", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "description", "title", "created_at"],
+    attributes: [
+      "id",
+      "title",
+      "description",
+      "poster_id",
+      "bidder_id",
+      "created_at",
+      "rating",
+    ],
     include: [
       {
         model: Bid,
