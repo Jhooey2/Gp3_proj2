@@ -6,7 +6,7 @@ const withAuth = require("../../utils/auth");
 router.get("/", (req, res) => {
   console.log("======================");
   Job.findAll({
-    attributes: ["id", "title", "description", "created_at"],
+    attributes: ["id", "title", "description", "poster_id", "bidder_id", "created_at", "rating"],
     order: [["created_at", "DESC"]],
     include: [
       {
@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
       // },
       {
         model: Bid,
-        attributes: ["id", "quote", "user_id"],
+        attributes: ["id", "quote", "job_id", "user_id"],
         include: {
           model: User,
           attributes: ["username"],
@@ -42,23 +42,23 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "description", "title", "created_at"],
+    attributes: ["id", "title", "description", "poster_id", "bidder_id", "created_at", "rating"],
     include: [
       {
         model: User,
         attributes: ["username"],
       },
-      {
-        model: Rating,
-        attributes: ["id", "rating_text", "job_id", "created_at"],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
-      },
+      // {
+      //   model: Rating,
+      //   attributes: ["id", "rating_text", "job_id", "created_at"],
+      //   include: {
+      //     model: User,
+      //     attributes: ["username"],
+      //   },
+      // },
       {
         model: Bid,
-        attributes: ["id", "quote", "user_id"],
+        attributes: ["id", "quote", "job_id", "user_id"],
         include: {
           model: User,
           attributes: ["username"],
@@ -82,7 +82,7 @@ router.get("/:id", (req, res) => {
 router.post("/", withAuth, (req, res) => {
   Job.create({
     title: req.body.title,
-    content: req.body.content,
+    description: req.body.description,
     user_id: req.session.user_id,
   })
     .then((dbJobData) => res.json(dbJobData))
@@ -96,7 +96,7 @@ router.put("/:id", withAuth, (req, res) => {
   Job.update(
     {
       title: req.body.title,
-      descrption: req.body.descrption,
+      description: req.body.description,
     },
     {
       where: {
