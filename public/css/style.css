@@ -1,0 +1,128 @@
+:root {
+    --gunmetal: #11232c;
+    --superiority: #669bbc;
+    --prussian: #003049;
+    --steel: #7f908f;
+    --papaya: #fdf1d8;
+    --carnelian: #c1121f;
+    --max: #f6c151;
+  }
+  
+  * {
+    box-sizing: border-box;
+    color: var(--gunmetal);
+  }
+  
+  body {
+    background-color: var(--papaya);
+    margin: 0;
+    padding: 0;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+    font-size: 20px;
+  }
+  
+  h1,
+  h2,
+  h3 {
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.25;
+  }
+  
+  .title-disp {
+    color: var(--papaya);
+    font-size: 2.8rem;
+    display: inline-block;
+    padding: 4px 0px 12px;
+  }
+  
+  .title-disp {
+    color: var(--max);
+  }
+  
+  .link {
+    color: var(--carnelian);
+    padding: 1em;
+    margin: 1em;
+  }
+  
+  main {
+    margin: 10px auto;
+    width: 95%;
+  }
+  
+  .page-display {
+    width: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .btn {
+    font-size: 1.2rem;
+    text-decoration: none;
+    padding: 5px 4px;
+    width: 100%;
+    display: block;
+    margin: 4px 0;
+    color: white;
+    background-color: var(--steel);
+  }
+  
+  .btn:hover {
+    color: var(--papaya);
+    background-color: var(--carnelian);
+    box-shadow: 2px 2px var(--superiority);
+  }
+  
+  #new-job-button a {
+    margin: 100% 0;
+    color: var(--papaya);
+  }
+  
+  .hero {
+    padding: 2% 3%;
+    background-color: var(--prussian);
+  }
+  
+  .card {
+    margin: 0 0 20px 0;
+    border: 2px solid var(--gunmetal);
+    border-radius: 2rem;
+  }
+  
+  .card-header {
+    padding: 1%;
+    border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
+  }
+  
+  .card-body {
+    padding: 1%;
+  }
+  
+  .form-label,
+  .form-input,
+  .form-textarea {
+    display: block;
+  }
+  
+  .form-label {
+    font-size: 1.1rem;
+    margin: 0 0 0 5px;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 3%;
+    margin: 5px 0;
+    font-size: 1.2rem;
+    border: 2px solid var(--prussian);
+    border-radius: 2rem;
+  }
+  
+  #developer-signup {
+
+  }

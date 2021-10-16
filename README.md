@@ -1,7 +1,5 @@
 # DevNonDev
 
-# Dev-NonDev
-
 ## Description
 
 Our project is a gig work / gig worker connection site. Both Devs and non Devs will be able to access our site to post jobs (gigs), as well as bid on, and be hired for short term gig work. There will also be an outlet for review of both the job poster as well as the developer who takes the job. It uses the MVC architecture and Heroku as the host for the viewers and database infrastucture.
@@ -23,6 +21,11 @@ https://dev-nondev.herokuapp.com/
 
 
 ## Screenshot
+
+![Image of functional application](assets/login.png) 
+
+![Image of functional application](assets/posts.png) 
+
 
 ## Technologies Used
 
