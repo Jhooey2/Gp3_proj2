@@ -1,5 +1,6 @@
 const path = require("path");
 const express = require("express");
+const compression = require("compression")
 const session = require("express-session");
 const exphbs = require("express-handlebars");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
@@ -28,6 +29,7 @@ const hbs = exphbs.create({ helpers });
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
+app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
